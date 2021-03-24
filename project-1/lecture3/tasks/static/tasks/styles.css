@@ -21,6 +21,7 @@ body {
     align-items: center;
     min-height: 80vh;
     background: var(--clr-dark2);
+    border: 2px solid var(--clr-white);
 }
 
 h1 {
@@ -32,4 +33,52 @@ li {
     font-size: 1.75rem;
     margin: 0px 0px 0px 1.10em;
     line-height: 1.5em;
+}
+
+ul {
+    margin-bottom: 1rem;
+}
+
+.main-button {
+    text-decoration: none;
+    font-size: 1.2rem;
+    color: var(--clr-white);
+    border: 2px solid var(--clr-white);
+    padding: 0.5em 1em;
+    border-radius: 0.4em;
+    margin: 1em;
+}
+
+.container {
+    /* border: 2px solid greenyellow; */
+    display: flex;
+    place-items: center;
+    flex-direction: column;
+    min-width: 50vw;
+}
+
+.tasks {
+    min-width: 100%;
+}
+
+.form-add {
+    display: flex;
+    place-items: center;
+    justify-content: space-between;
+    width: 26rem;
+}
+
+input[name=task] {
+    min-width: 70%;
+    font-size: 1.125rem;
+    height: 2rem;
+    padding: 0px 0.5em;
+}
+
+.submit-task {
+    min-height: 2rem;
+    font-size: 1rem;
+    color: var(--clr-white);
+    background: var(--clr-dark2);
+    padding: 0.4em 0.8em;
 }
