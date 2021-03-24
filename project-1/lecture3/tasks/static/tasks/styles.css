@@ -1,0 +1,35 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --clr-dark: #111;
+    --clr-dark2: #1a1a1a;
+    --clr-white: #EEE;
+}
+
+body {
+    background: var(--clr-dark);
+    font-family: sans-serif;
+    color: var(--clr-white);
+}
+
+.flex-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+    background: var(--clr-dark2);
+}
+
+h1 {
+    font-size: 6rem;
+    margin: 0 0 0.25em 0;
+}
+
+li {
+    font-size: 1.75rem;
+    margin: 0px 0px 0px 1.10em;
+    line-height: 1.5em;
+}
