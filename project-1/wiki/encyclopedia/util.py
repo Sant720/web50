@@ -2,6 +2,7 @@ import re
 
 from django.core.files.base import ContentFile
 from django.core.files.storage import default_storage
+from markdown2 import markdown_path, markdown
 
 
 def list_entries():
@@ -35,3 +36,15 @@ def get_entry(title):
         return f.read().decode("utf-8")
     except FileNotFoundError:
         return None
+
+def markdowner(entry):
+    """
+    Uses the markdown2 package to convert markdown files
+    into html. Returns error message if page doesn't 
+    exist. 
+    """
+    try:
+        html = markdown_path(f"entries/{entry}.md")
+        return markdown(html)
+    except FileNotFoundError:
+        return "<h1>This page doesn't exist yet!<h1>"
