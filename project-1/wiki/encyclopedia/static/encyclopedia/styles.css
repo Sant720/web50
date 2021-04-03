@@ -19,8 +19,29 @@ textarea {
     padding: 0.5em;
 }
 
+/*====
+  Main 
+  ====*/
+
 .main {
     padding: 10px;
+}
+
+.content {
+    margin: 1em;
+    width: 90%;
+    position: absolute;
+}
+
+/*=======
+  Sidebar 
+  =======*/
+
+.sidebar {
+    background-color: #222;
+    min-height: 100vh;
+    padding: 25px;
+    color: #f0f0f0;
 }
 
 .search {
@@ -30,31 +51,36 @@ textarea {
     line-height: 15px;
 }
 
-.sidebar {
-    background-color: #222;
-    min-height: 100vh;
-    padding: 25px;
-    color: #f0f0f0;
-}
-
 .sidebar h2 {
     margin-top: 5px;
 }
 
+.sidebar-element {
+    font-size: 1.125rem;
+    margin: 0.75em 0; 
+}
+
+.sidebar-link {
+    color: #DDD;
+    user-select: none;
+}
+
+.sidebar-link:hover {
+    text-decoration: none;
+    color: #EEE;
+}
+
+.site-title {
+    user-select: none;
+    padding-top: 0.65em;
+}
+
+/*=====
+  Forms 
+  =====*/
+
 .form {
     max-width: 70vw;
-}
-
-.content {
-    margin: 1em;
-    width: 90%;
-    position: absolute;
-}
-
-@media (min-width: 800px) {
-    .content {
-        width: 70%;
-    }
 }
 
 .edit_submit {
@@ -76,6 +102,7 @@ textarea {
 
 .small-info {
     opacity: 80%;
+    font-size: 1rem;
 }
 
 .errorlist {
@@ -84,22 +111,12 @@ textarea {
     list-style-type: none;
 }
 
-.sidebar-element {
-    font-size: 1.125rem;
-    margin: 0.75em 0; 
-}
+/*=====
+  Media 
+  =====*/
 
-.sidebar-link {
-    color: #DDD;
-    user-select: none;
-}
-
-.sidebar-link:hover {
-    text-decoration: none;
-    color: #EEE;
-}
-
-.site-title {
-    user-select: none;
-    padding-top: 0.65em;
+  @media (min-width: 800px) {
+    .content {
+        width: 70%;
+    }
 }
