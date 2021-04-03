@@ -5,7 +5,7 @@
 {% endblock title %}
 
 {% block body %}
-<div class="entry-content">
+<div class="content">
     {% if content %}
     {{ content | safe }}
     <a href="{% url 'wiki:wiki' %}{{ entry }}/edit" class="btn btn-light edit_btn">Edit Page</a>

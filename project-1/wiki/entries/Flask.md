@@ -1,3 +1,1 @@
-# Flask
-
-Flask is a **smaller** web framework for Python.
+# FlaskFlask is a **smaller** web framework for Python.

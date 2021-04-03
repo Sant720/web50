@@ -44,7 +44,7 @@ textarea {
     max-width: 70vw;
 }
 
-.entry-content {
+.content {
     margin: 1em;
     /* border: 2px solid blue; */
     width: 90%;
@@ -52,7 +52,7 @@ textarea {
 }
 
 @media (min-width: 800px) {
-    .entry-content {
+    .content {
         width: 70%;
     }
 }
@@ -66,4 +66,20 @@ textarea {
     position: absolute;
     top: 27px;
     right: 0%;
+}
+
+.field-title {
+    font-size: 1.075rem;
+    margin: 1em 0em 0em 0em;
+    color: #2f2f2f;
+}
+
+.small-info {
+    opacity: 80%;
+}
+
+.errorlist {
+    color: #ff0033;
+    padding: 0;
+    list-style-type: none;
 }

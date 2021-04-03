@@ -3,20 +3,28 @@
 Create Page
 {% endblock title %}
 {% block body %}
-<h1>Create a Page</h1>
-<div class="form">
-    <form action="{% url 'wiki:create' %}" method="post">
-        {% csrf_token %}
-        <!-- {{ create_form.title.label }}<br>
-        {{ create_form.title }}<br>
-        {{ create_form.content.label }} <br>
-        {{ create_form.content }} -->
-        {{ create_form }}
-        <div class="edit_submit">
-            <input type="submit" value="Create" class="btn btn-primary">
-        </div>
-        
-    </form>
+<div class="content">
+    <h1>Create New Page</h1>
+    <div class="form">
+        <form action="{% url 'wiki:create' %}" method="post">
+            {% csrf_token %}
+            <p class="field-title">{{ create_form.title.label }}</p>
+            {% if not create_form.title.errors %}
+            <p class="small-info">Be sure to use a unique title!</p>
+            {% else %}
+            {{ create_form.title.errors }}
+            {% endif %}
+            {{ create_form.title }}
+            <p class="field-title">{{ create_form.content.label }}</p>
+            <p class="small-info">Before writing, check out the <a href="https://docs.github.com/en/github/writing-on-github/basic-writing-and-formatting-syntax">GitHub Markdown Guide</a>.</p>
+            {{ create_form.content.errors }}
+            {{ create_form.content }}
+            <div class="edit_submit">
+                <input type="submit" value="Create" class="btn btn-primary">
+            </div>
+        </form>
+</div>
+
     
 </div>
 

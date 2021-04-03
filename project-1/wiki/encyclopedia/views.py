@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from django import forms
 from django.urls import reverse
+from django.utils.safestring import mark_safe
 from random import randint
 
 from . import util
@@ -11,7 +12,7 @@ class EditForm(forms.Form):
 
 class CreateForm(forms.Form):
     title = forms.CharField(label="Page Title", max_length=25)
-    content = forms.CharField(label="Content", widget=forms.Textarea(attrs={'class' : 'edit_form'}))
+    content = forms.CharField(label="Content", widget=forms.Textarea(attrs={'class' : 'edit_form', 'placeholder': "# Don't Forget Your Page Title\n\nAnd write some awesome content!"}))
     
     def clean_title(self):
         title = self.cleaned_data["title"]
