@@ -11,6 +11,12 @@ class EditForm(forms.Form):
 class CreateForm(forms.Form):
     title = forms.CharField(label="Page Title", max_length=25)
     content = forms.CharField(label="Content", widget=forms.Textarea(attrs={'class' : 'edit_form'}))
+    
+    def clean_title(self):
+        title = self.cleaned_data["title"]
+        if title.lower() in [entry.lower() for entry in util.list_entries()]:
+            raise forms.ValidationError("A page with this title already exists.")
+        return title
 
 def index(request):
     return render(request, "encyclopedia/index.html", {

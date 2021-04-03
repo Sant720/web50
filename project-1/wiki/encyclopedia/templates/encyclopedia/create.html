@@ -7,10 +7,11 @@ Create Page
 <div class="form">
     <form action="{% url 'wiki:create' %}" method="post">
         {% csrf_token %}
-        {{ create_form.title.label }}<br>
+        <!-- {{ create_form.title.label }}<br>
         {{ create_form.title }}<br>
         {{ create_form.content.label }} <br>
-        {{ create_form.content }}
+        {{ create_form.content }} -->
+        {{ create_form }}
         <div class="edit_submit">
             <input type="submit" value="Create" class="btn btn-primary">
         </div>
