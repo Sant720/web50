@@ -73,7 +73,13 @@ def edit(request, entry):
             "edit_form": form
         })
 
-    content = {'content': util.get_entry(entry)}
+    content_body = util.get_entry(entry)
+    if not content_body:
+        return render(request, "encyclopedia/search.html", {
+            "q": entry, 
+            "matches": None
+        })
+    content = {'content': content_body}
     return render(request, "encyclopedia/edit.html", {
         "entry": entry,
         "edit_form": EditForm(initial=content)
