@@ -1,11 +1,12 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from django import forms
+from django.urls import reverse
 
 from . import util
 
 class EditForm(forms.Form):
-    content = forms.CharField(label="", widget=forms.Textarea(attrs={'class' : 'edit_form'}))
+    content = forms.CharField(label="Content", widget=forms.Textarea(attrs={'class' : 'edit_form'}))
 
 class CreateForm(forms.Form):
     title = forms.CharField(label="Page Title", max_length=25)
@@ -32,7 +33,7 @@ def search(request):
         for entry in util.list_entries():
             q_low, entry_low = q.lower(), entry.lower()
             if q_low == entry_low:
-                return HttpResponseRedirect("/wiki/" + q)
+                return HttpResponseRedirect(reverse("wiki:wiki") + q)
             if q_low in entry_low:
                 matches.append(entry)
         return render(request, "encyclopedia/search.html", {
@@ -50,7 +51,7 @@ def edit(request, entry):
                 if line != "\n":
                     content += line
             util.save_entry(entry, content)
-            return HttpResponseRedirect("/wiki/" + entry) 
+            return HttpResponseRedirect(reverse("wiki:wiki") + entry) 
 
     content = {'content': util.get_entry(entry)}
     return render(request, "encyclopedia/edit.html", {
@@ -65,7 +66,7 @@ def create(request):
             title = form.cleaned_data["title"]
             content = form.cleaned_data["content"]
             util.save_entry(title, content)
-            return HttpResponseRedirect("/wiki/" + title)
+            return HttpResponseRedirect(reverse("wiki:wiki") + title)
         else:
             return render(request, "encyclopedia/create.html", {
                 "create_form": form
