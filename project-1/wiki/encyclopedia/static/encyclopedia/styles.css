@@ -2,7 +2,7 @@ body {
     margin: 0;
     background-color: white;
     overflow-x: hidden;
-
+    font-size: 1.125rem;
 }
 
 code {
@@ -11,7 +11,6 @@ code {
 
 h1 {
     margin: 20px 0px;
-    /* padding-top: 20px; */
 }
 
 textarea {
@@ -25,15 +24,17 @@ textarea {
 }
 
 .search {
+    margin: 0.30em 0;
     width: 100%;
-    font-size: 15px;
+    font-size: 1.125rem;
     line-height: 15px;
 }
 
 .sidebar {
-    background-color: #f0f0f0;
+    background-color: #222;
     min-height: 100vh;
-    padding: 20px;
+    padding: 25px;
+    color: #f0f0f0;
 }
 
 .sidebar h2 {
@@ -46,7 +47,6 @@ textarea {
 
 .content {
     margin: 1em;
-    /* border: 2px solid blue; */
     width: 90%;
     position: absolute;
 }
@@ -69,7 +69,7 @@ textarea {
 }
 
 .field-title {
-    font-size: 1.075rem;
+    font-size: 1.250rem;
     margin: 1em 0em 0em 0em;
     color: #2f2f2f;
 }
@@ -82,4 +82,24 @@ textarea {
     color: #ff0033;
     padding: 0;
     list-style-type: none;
+}
+
+.sidebar-element {
+    font-size: 1.125rem;
+    margin: 0.75em 0; 
+}
+
+.sidebar-link {
+    color: #DDD;
+    user-select: none;
+}
+
+.sidebar-link:hover {
+    text-decoration: none;
+    color: #EEE;
+}
+
+.site-title {
+    user-select: none;
+    padding-top: 0.65em;
 }
