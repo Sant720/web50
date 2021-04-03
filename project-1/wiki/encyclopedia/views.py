@@ -7,6 +7,10 @@ from . import util
 class EditForm(forms.Form):
     content = forms.CharField(label="", widget=forms.Textarea(attrs={'class' : 'edit_form'}))
 
+class CreateForm(forms.Form):
+    title = forms.CharField(label="Page Title", max_length=25)
+    content = forms.CharField(label="Content", widget=forms.Textarea(attrs={'class' : 'edit_form'}))
+
 def index(request):
     return render(request, "encyclopedia/index.html", {
         "entries": util.list_entries()
@@ -45,11 +49,28 @@ def edit(request, entry):
             for line in form.cleaned_data["content"]:
                 if line != "\n":
                     content += line
-        util.save_entry(entry, content)
-        return HttpResponseRedirect("/wiki/" + entry) 
+            util.save_entry(entry, content)
+            return HttpResponseRedirect("/wiki/" + entry) 
 
     content = {'content': util.get_entry(entry)}
     return render(request, "encyclopedia/edit.html", {
         "entry": entry,
         "edit_form": EditForm(initial=content)
+    })
+
+def create(request):
+    if request.method == "POST":
+        form = CreateForm(request.POST)
+        if form.is_valid():
+            title = form.cleaned_data["title"]
+            content = form.cleaned_data["content"]
+            util.save_entry(title, content)
+            return HttpResponseRedirect("/wiki/" + title)
+        else:
+            return render(request, "encyclopedia/create.html", {
+                "create_form": form
+            })
+        
+    return render(request, "encyclopedia/create.html", {
+        "create_form": CreateForm()
     })
