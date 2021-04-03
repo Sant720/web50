@@ -1,8 +1,11 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
+from django import forms
 
 from . import util
 
+class EditForm(forms.Form):
+    content = forms.CharField(label="", widget=forms.Textarea(attrs={'class' : 'edit_form'}))
 
 def index(request):
     return render(request, "encyclopedia/index.html", {
@@ -33,3 +36,20 @@ def search(request):
             "matches": matches
         })
     return HttpResponseRedirect("/")
+
+def edit(request, entry):
+    if request.method == "POST":
+        form = EditForm(request.POST)
+        if form.is_valid():
+            content = ""
+            for line in form.cleaned_data["content"]:
+                if line != "\n":
+                    content += line
+        util.save_entry(entry, content)
+        return HttpResponseRedirect("/wiki/" + entry) 
+
+    content = {'content': util.get_entry(entry)}
+    return render(request, "encyclopedia/edit.html", {
+        "entry": entry,
+        "edit_form": EditForm(initial=content)
+    })

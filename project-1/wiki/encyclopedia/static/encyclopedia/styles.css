@@ -1,6 +1,8 @@
 body {
     margin: 0;
     background-color: white;
+    overflow-x: hidden;
+
 }
 
 code {
@@ -8,13 +10,14 @@ code {
 }
 
 h1 {
-    margin-top: 0px;
-    padding-top: 20px;
+    margin: 20px 0px;
+    /* padding-top: 20px; */
 }
 
 textarea {
-    height: 90vh;
-    width: 80%;
+    min-height: 30vh;
+    width: 100%;
+    padding: 0.5em;
 }
 
 .main {
@@ -29,10 +32,38 @@ textarea {
 
 .sidebar {
     background-color: #f0f0f0;
-    height: 100vh;
+    min-height: 100vh;
     padding: 20px;
 }
 
 .sidebar h2 {
     margin-top: 5px;
+}
+
+.form {
+    max-width: 70vw;
+}
+
+.entry-content {
+    margin: 1em;
+    /* border: 2px solid blue; */
+    width: 90%;
+    position: absolute;
+}
+
+@media (min-width: 800px) {
+    .entry-content {
+        width: 70%;
+    }
+}
+
+.edit_submit {
+    margin: 1.5em 0em;
+    text-align: right;
+}
+
+.edit_btn {
+    position: absolute;
+    top: 27px;
+    right: 0%;
 }
