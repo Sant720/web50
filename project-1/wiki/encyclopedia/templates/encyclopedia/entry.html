@@ -5,17 +5,14 @@
 {% endblock title %}
 
 {% block body %}
-<div class="content">
-    {% if content %}
+{% if content %}
     {{ content | safe }}
     <a href="{% url 'wiki:wiki' %}{{ entry }}/edit" class="btn btn-light edit_btn">Edit Page</a>
-    {% else %}
+{% else %}
     <h1>Oh no!</h1>
     <p>It looks like this page doesn't exist yet.</p>
     <p>Try creating a <a href="{% url 'wiki:create' %}">New Page</a>!</p>
-    {% endif %}
-</div>
-
+{% endif %}
 {% endblock body %}
 
 

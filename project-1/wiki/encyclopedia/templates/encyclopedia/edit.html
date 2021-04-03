@@ -5,8 +5,7 @@ Edit {{ entry }}
 {% endblock title %}
 
 {% block body %}
-<div class="content">
-    <h1>Edit {{ entry }}</h1>
+<h1>Edit {{ entry }}</h1>
 <div class="form">
     <form action="{% url 'wiki:wiki' %}{{ entry }}/edit" method="post">
         {% csrf_token %}
@@ -16,8 +15,5 @@ Edit {{ entry }}
         </div>
     </form>
 </div>
-</div>
-
 {{ content }}
-
 {% endblock body %}
