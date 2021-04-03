@@ -53,7 +53,7 @@ def search(request):
         for entry in util.list_entries():
             q_low, entry_low = q.lower(), entry.lower()
             if q_low == entry_low:
-                return HttpResponseRedirect(reverse("wiki:wiki") + q)
+                return HttpResponseRedirect(reverse("wiki:wiki") + entry)
             if q_low in entry_low:
                 matches.append(entry)
         return render(request, "encyclopedia/search.html", {
