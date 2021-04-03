@@ -10,6 +10,12 @@ from . import util
 class EditForm(forms.Form):
     content = forms.CharField(label="Content", widget=forms.Textarea(attrs={'class' : 'edit_form'}))
 
+    def clean_content(self):
+        content = self.cleaned_data["content"]
+        if not content.startswith("# "):
+            raise forms.ValidationError("Please start your content with a title hashtag (# Title)")
+        return content
+
 class CreateForm(forms.Form):
     title = forms.CharField(label="Page Title", max_length=25)
     content = forms.CharField(label="Content", widget=forms.Textarea(attrs={'class' : 'edit_form', 'placeholder': "# Don't Forget Your Page Title\n\nAnd write some awesome content!"}))
@@ -20,6 +26,12 @@ class CreateForm(forms.Form):
             raise forms.ValidationError("A page with this title already exists.")
         return title
 
+    def clean_content(self):
+        content = self.cleaned_data["content"]
+        if not content.startswith("# "):
+            raise forms.ValidationError("Please start your content with a title hashtag (# Title)")
+        return content
+    
 def index(request):
     return render(request, "encyclopedia/index.html", {
         "entries": util.list_entries()
@@ -54,12 +66,13 @@ def edit(request, entry):
     if request.method == "POST":
         form = EditForm(request.POST)
         if form.is_valid():
-            content = ""
-            for line in form.cleaned_data["content"]:
-                if line != "\n":
-                    content += line
+            content = "".join([line for line in form.cleaned_data["content"] if line != "\n"])
             util.save_entry(entry, content)
             return HttpResponseRedirect(reverse("wiki:wiki") + entry) 
+        else:
+            return render(request, "encyclopedia/edit.html", {
+                "edit_form": form
+            })
 
     content = {'content': util.get_entry(entry)}
     return render(request, "encyclopedia/edit.html", {
@@ -73,7 +86,8 @@ def create(request):
         if form.is_valid():
             title = form.cleaned_data["title"]
             content = form.cleaned_data["content"]
-            util.save_entry(title, content)
+            lines = "".join([line for line in content if line != "\n"])
+            util.save_entry(title, lines)
             return HttpResponseRedirect(reverse("wiki:wiki") + title)
         else:
             return render(request, "encyclopedia/create.html", {
