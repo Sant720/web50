@@ -69,10 +69,9 @@ def edit(request, entry):
             content = "".join([line for line in form.cleaned_data["content"] if line != "\n"])
             util.save_entry(entry, content)
             return HttpResponseRedirect(reverse("wiki:wiki") + entry) 
-        else:
-            return render(request, "encyclopedia/edit.html", {
-                "edit_form": form
-            })
+        return render(request, "encyclopedia/edit.html", {
+            "edit_form": form
+        })
 
     content = {'content': util.get_entry(entry)}
     return render(request, "encyclopedia/edit.html", {
@@ -89,10 +88,9 @@ def create(request):
             lines = "".join([line for line in content if line != "\n"])
             util.save_entry(title, lines)
             return HttpResponseRedirect(reverse("wiki:wiki") + title)
-        else:
-            return render(request, "encyclopedia/create.html", {
-                "create_form": form
-            })
+        return render(request, "encyclopedia/create.html", {
+            "create_form": form
+        })
         
     return render(request, "encyclopedia/create.html", {
         "create_form": CreateForm()
