@@ -24,7 +24,7 @@ def index(request):
     })
 
 def wiki(request):
-    return HttpResponseRedirect("/")
+    return HttpResponseRedirect(reverse("wiki:index"))
 
 def entry(request, entry):
     return render(request, "encyclopedia/entry.html", {
@@ -46,7 +46,7 @@ def search(request):
             "q": q,
             "matches": matches
         })
-    return HttpResponseRedirect("/")
+    return HttpResponseRedirect(reverse("wiki:index"))
 
 def edit(request, entry):
     if request.method == "POST":
