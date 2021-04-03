@@ -47,4 +47,4 @@ def markdowner(entry):
         html = markdown_path(f"entries/{entry}.md")
         return markdown(html)
     except FileNotFoundError:
-        return "<h1>This page doesn't exist yet!<h1>"
+        return ""

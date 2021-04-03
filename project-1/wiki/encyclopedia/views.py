@@ -30,7 +30,7 @@ def wiki(request):
 def entry(request, entry):
     return render(request, "encyclopedia/entry.html", {
         "entry": entry,
-        "body": util.markdowner(entry)
+        "content": util.markdowner(entry)
     })
 
 def search(request):
