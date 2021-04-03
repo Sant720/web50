@@ -9,7 +9,9 @@ Edit {{ entry }}
 <div class="form">
     <form action="{% url 'wiki:wiki' %}{{ entry }}/edit" method="post">
         {% csrf_token %}
-        {{ edit_form }}
+        <p class="field-title">{{ edit_form.content.label }}</p>
+        <p class="small-info">Make your edits here.</p>
+        {{ edit_form.content }}
         <div class="edit_submit">
             <input type="submit" class="btn btn-primary">
         </div>
