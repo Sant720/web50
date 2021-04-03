@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from django import forms
 from django.urls import reverse
+from random import randint
 
 from . import util
 
@@ -81,3 +82,8 @@ def create(request):
     return render(request, "encyclopedia/create.html", {
         "create_form": CreateForm()
     })
+
+def random(request):
+    ls = util.list_entries()
+    page = ls[randint(0, len(ls) - 1)]
+    return HttpResponseRedirect(reverse("wiki:wiki") + page)
